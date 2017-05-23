@@ -46,11 +46,17 @@ function compiler(loader: Loader, text: string): void {
     const instanceName = query.instance || 'at-loader';
     const instance = ensureInstance(loader, query, options, instanceName, rootCompiler);
     const callback = loader.async();
+    const rawFileName = helpers.toUnix(loader.resourcePath);
 
-    let fileName = helpers.toUnix(loader.resourcePath);
-    instance.compiledFiles[fileName] = true;
+    let fileName = helpers.appendTsSuffixIfMatch(
+        query.appendTsSuffixTo || [],
+        rawFileName
+    );
+    console.log("APPENDED: ", fileName);
 
-    if (DECLARATION.test(fileName)) {
+    instance.compiledFiles[rawFileName] = true;
+
+    if (DECLARATION.test(rawFileName)) {
         loader.emitWarning(`[${instanceName}] TypeScript declaration files should never be required`);
         return callback(null, '');
     }
