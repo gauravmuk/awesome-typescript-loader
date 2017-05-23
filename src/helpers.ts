@@ -121,3 +121,14 @@ const TYPESCRIPT_EXTENSION = /\.(d\.)?(t|j)s$/;
 export function withoutTypeScriptExtension(fileName: string): string {
     return fileName.replace(TYPESCRIPT_EXTENSION, '');
 }
+
+export function appendTsSuffixIfMatch(patterns: RegExp[], filePath: string): string {
+    if (patterns.length > 0) {
+        for (let regexp of patterns) {
+            if (filePath.match(regexp)) {
+                return filePath + '.ts';
+            }
+        }
+    }
+    return filePath;
+}
