@@ -24,7 +24,7 @@ export interface LoaderConfig {
     cacheDirectory?: string;
     entryFileIsJs?: boolean;
     debug?: boolean;
-    appendTsSuffixTo?: RegExp[];
+    appendTsSuffixTo?: string[];
     getCustomTransformers?(): ts.CustomTransformers | undefined;
 }
 
