@@ -125,7 +125,6 @@ export function withoutTypeScriptExtension(fileName: string): string {
 export function appendTsSuffixIfMatch(patterns: RegExp[], filePath: string): string {
     if (patterns.length > 0) {
         if (patterns.some(regex => regex.test(filePath))) {
-            console.log("MATCH: ", regexp, "\n    ON: ", filePath);
             return filePath + '.ts';
         }
     }

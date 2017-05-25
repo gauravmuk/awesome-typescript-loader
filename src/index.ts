@@ -49,7 +49,6 @@ function compiler(loader: Loader, text: string): void {
     const rawFileName = helpers.toUnix(loader.resourcePath);
     const appendTsSuffixTo = Array.isArray(query.appendTsSuffixTo)? query.appendTsSuffixTo.map(value => new RegExp(value)) : [];
 
-    console.log("APPENDING TO: ", query.appendTsSuffixTo);
     let fileName = helpers.appendTsSuffixIfMatch(
         appendTsSuffixTo || [],
         rawFileName
