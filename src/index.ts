@@ -54,9 +54,9 @@ function compiler(loader: Loader, text: string): void {
         rawFileName
     );
 
-    instance.compiledFiles[rawFileName] = true;
+    instance.compiledFiles[fileName] = true;
 
-    if (DECLARATION.test(rawFileName)) {
+    if (DECLARATION.test(fileName)) {
         loader.emitWarning(`[${instanceName}] TypeScript declaration files should never be required`);
         return callback(null, '');
     }
